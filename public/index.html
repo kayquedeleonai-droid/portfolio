@@ -14,7 +14,7 @@
 <style>
 :root{
   --bg:#0b0b0b; --ink:#f2f1ec; --mute:#8b8a85; --card:#151515; --line:#232323;
-  --accent:#ff5b14; --r:18px;
+  --accent:#3ee6d4; --r:18px;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
@@ -30,7 +30,7 @@ button{font:inherit;color:inherit;border:0;background:none;cursor:pointer}
 .top-r{display:flex;gap:8px}
 .pill{height:56px;padding:0 26px;border-radius:999px;display:inline-flex;align-items:center;gap:10px;font-weight:500;font-size:17px;transition:transform .2s ease,background .2s}
 .pill:hover{transform:scale(1.04)}
-.pill.accent{background:var(--accent);color:#fff}
+.pill.accent{background:var(--accent);color:#06201d}
 .pill.white{background:rgba(20,20,20,.6);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.12)}
 .dot3{width:56px;height:56px;border-radius:50%;background:rgba(20,20,20,.6);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.12);display:grid;place-items:center}
 .dot3 i{width:4px;height:4px;border-radius:50%;background:var(--ink);box-shadow:-7px 0 0 var(--ink),7px 0 0 var(--ink)}
@@ -56,7 +56,7 @@ button{font:inherit;color:inherit;border:0;background:none;cursor:pointer}
 .hero-card{padding-bottom:40px}
 .hero-card .kick{display:flex;justify-content:space-between;align-items:end;gap:32px}
 .hero-card .kick h1{font-size:clamp(32px,4.6vw,72px);line-height:.98;font-weight:500;letter-spacing:-.04em;color:#fff;max-width:980px}
-.hero-card .btn{flex:none;height:56px;padding:0 28px;border-radius:999px;background:var(--accent);color:#fff;font-weight:600;font-size:16px;display:inline-flex;align-items:center;gap:10px;transition:filter .2s,transform .2s}
+.hero-card .btn{flex:none;height:56px;padding:0 28px;border-radius:999px;background:var(--accent);color:#06201d;font-weight:600;font-size:16px;display:inline-flex;align-items:center;gap:10px;transition:filter .2s,transform .2s}
 .hero-card .btn:hover{filter:brightness(1.08);transform:scale(1.03)}
 
 /* ---------- brand strip ---------- */
@@ -103,7 +103,7 @@ button{font:inherit;color:inherit;border:0;background:none;cursor:pointer}
 .play{position:absolute;right:16px;bottom:16px;width:56px;height:56px;border-radius:50%;background:rgba(255,255,255,.92);display:grid;place-items:center;transition:transform .25s,background .25s}
 .play svg{width:18px;margin-left:3px}
 .piece:hover .play{background:var(--accent);transform:scale(1.08)}
-.piece:hover .play svg path{fill:#fff}
+.piece:hover .play svg path{fill:#06201d}
 .dur{position:absolute;left:16px;bottom:16px;background:rgba(0,0,0,.45);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);color:#fff;font-size:13px;padding:6px 11px;border-radius:999px}
 .meta{display:flex;justify-content:space-between;align-items:baseline;padding:14px 8px 0}
 .meta h4{font-size:20px;font-weight:500;letter-spacing:-.02em}
