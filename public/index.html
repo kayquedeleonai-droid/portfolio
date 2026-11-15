@@ -150,7 +150,20 @@ button{font:inherit;color:inherit;border:0;background:none;cursor:pointer}
 footer{background:#111;color:#fff;padding:100px 24px 28px;border-top:1px solid var(--line)}
 .foot-in{max-width:1440px;margin:0 auto}
 footer h2{font-size:clamp(48px,9vw,150px);line-height:.9;font-weight:600;letter-spacing:-.05em}
-footer h2 a{color:var(--accent)}
+footer h2 a,footer h2 span{color:var(--accent)}
+.foot-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:64px;align-items:start}
+.cform{display:grid;gap:14px}
+.cform label{display:grid;gap:8px}
+.cform label span{font-size:13px;text-transform:uppercase;letter-spacing:.08em;color:var(--mute)}
+.cform input,.cform textarea{font:inherit;font-size:17px;color:var(--ink);background:#0b0b0b;border:1px solid var(--line);border-radius:14px;padding:15px 16px;outline:none;resize:vertical;transition:border-color .2s}
+.cform input:focus,.cform textarea:focus{border-color:var(--accent)}
+.cform .hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+.send{justify-self:start;height:56px;padding:0 28px;border-radius:999px;background:var(--accent);color:#06201d;font-weight:600;font-size:16px;margin-top:6px;transition:filter .2s,transform .2s}
+.send:hover{filter:brightness(1.08);transform:scale(1.03)}
+.send[disabled]{opacity:.6;pointer-events:none}
+.cstatus{font-size:15px;color:var(--mute);min-height:1.4em}
+.cstatus.ok{color:var(--accent)}.cstatus.err{color:#ff7a7a}
+@media (max-width:900px){.foot-grid{grid-template-columns:1fr;gap:40px}}
 .foot-b{display:flex;justify-content:space-between;margin-top:90px;color:#8a8a85;font-size:14px;flex-wrap:wrap;gap:12px}
 
 /* ---------- lightbox ---------- */
@@ -186,15 +199,42 @@ footer h2 a{color:var(--accent)}
   .partner{margin-left:0}
 }
 @media (prefers-reduced-motion:reduce){.strip-in{animation:none}}
+/* ---------- CRT (só com ?crt) ---------- */
+.crt-toggle{position:fixed;left:50%;transform:translateX(-50%);top:22px;z-index:300;height:44px;padding:0 18px;border-radius:999px;background:rgba(20,20,20,.75);border:1px solid rgba(255,255,255,.15);color:#fff;font-size:14px;backdrop-filter:blur(10px)}
+.crt body::before{content:"";position:fixed;inset:0;z-index:250;pointer-events:none;
+  background:repeating-linear-gradient(to bottom,rgba(0,0,0,.16) 0,rgba(0,0,0,.16) 1px,transparent 1px,transparent 3px);animation:crtRoll 9s linear infinite}
+.crt body::after{content:"";position:fixed;top:-50%;left:-50%;width:200%;height:200%;z-index:251;pointer-events:none;opacity:.07;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  animation:crtGrain .5s steps(4) infinite}
+.crt .vignette{display:block}
+.vignette{display:none;position:fixed;inset:0;z-index:249;pointer-events:none;background:radial-gradient(ellipse at center,transparent 60%,rgba(0,0,0,.42) 100%);box-shadow:inset 0 0 90px rgba(0,0,0,.45);animation:crtFlicker 4s infinite}
+.crt h1,.crt h2,.crt .meta h4,.crt .brand-h h3{text-shadow:-1.5px 0 rgba(255,40,90,.55),1.5px 0 rgba(40,255,230,.55)}
+.crt .mosaic video,.crt .thumb img,.crt .thumb video{filter:contrast(1.12) saturate(1.18) brightness(1.02)}
+.crt .thumb::after,.crt .mosaic .t::after{content:"";position:absolute;inset:0;pointer-events:none;
+  background:repeating-linear-gradient(90deg,rgba(255,0,60,.06) 0 1px,rgba(0,255,120,.06) 1px 2px,rgba(0,90,255,.06) 2px 3px);
+  box-shadow:inset 0 0 60px rgba(0,0,0,.55)}
+.crt .piece:hover .thumb img,.crt .piece:hover .thumb video.ready{animation:crtGlitch .45s steps(2) 1}
+#power{position:fixed;inset:0;z-index:400;pointer-events:none;background:#000;animation:crtOff 1.3s ease-out forwards}
+#power::after{content:"";position:absolute;left:0;right:0;top:50%;height:2px;margin-top:-1px;background:#fff;box-shadow:0 0 30px 6px rgba(160,255,245,.8);animation:crtLine 1.3s ease-out forwards}
+@keyframes crtLine{0%{transform:scaleX(0)}25%{transform:scaleX(1)}45%{transform:scaleY(1);opacity:1}70%{transform:scaleY(400);opacity:.5}100%{transform:scaleY(400);opacity:0}}
+@keyframes crtOff{0%,45%{background:#000}100%{background:transparent}}
+@keyframes crtGrain{0%{transform:translate(0,0)}25%{transform:translate(-6%,4%)}50%{transform:translate(5%,-3%)}75%{transform:translate(-3%,-6%)}100%{transform:translate(0,0)}}
+@keyframes crtRoll{to{background-position:0 300px}}
+@keyframes crtFlicker{0%,100%{opacity:1}48%{opacity:1}50%{opacity:.86}52%{opacity:1}80%{opacity:.95}}
+@keyframes crtGlitch{0%{transform:translate(0) scale(1.03);filter:hue-rotate(0) contrast(1.2)}50%{transform:translate(-4px,1px) scale(1.03);filter:hue-rotate(25deg) contrast(1.4)}100%{transform:translate(0) scale(1.03)}}
+@media (prefers-reduced-motion:reduce){.crt body::before,.crt body::after,.vignette,#power,#power::after{animation:none!important}#power{display:none}}
+
 </style>
 </head>
 <body>
 
+<div class="vignette" aria-hidden="true"></div>
 <header class="top">
   <a href="#" class="mark">Kayque Deleon</a>
   <div class="top-r">
     <a href="#trabalhos" class="pill white">Trabalhos</a>
     <a href="#sobre" class="pill white">Sobre</a>
+    <a href="#contato" class="pill white">Contato</a>
     <a href="https://www.instagram.com/kayquedeleon.ai/" target="_blank" rel="noopener" class="pill accent">Instagram</a>
     <button class="dot3" id="menuBtn" aria-label="Marcas"><i></i></button>
   </div>
@@ -435,10 +475,20 @@ footer h2 a{color:var(--accent)}
   </div>
 </section>
 
-<footer>
+<footer id="contato">
   <div class="foot-in">
-    <h2>Vamos criar<br>algo <a href="https://www.instagram.com/kayquedeleon.ai/" target="_blank" rel="noopener">juntos?</a></h2>
-    <div class="foot-b"><span>© <span id="yr"></span> Kayque Deleon</span><a href="https://www.instagram.com/kayquedeleon.ai/" target="_blank" rel="noopener">@kayquedeleon.ai</a></div>
+    <div class="foot-grid">
+      <h2>Vamos criar<br>algo <span>juntos?</span></h2>
+      <form class="cform" id="cform" novalidate>
+        <label><span>Nome</span><input name="nome" required autocomplete="name" placeholder="Seu nome"></label>
+        <label><span>E-mail</span><input name="email" type="email" required autocomplete="email" placeholder="voce@empresa.com"></label>
+        <label><span>Mensagem</span><textarea name="mensagem" rows="5" required placeholder="Conte sobre o projeto, prazo e formato."></textarea></label>
+        <input type="text" name="_honey" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <button type="submit" class="send">Enviar mensagem <span aria-hidden="true">→</span></button>
+        <p class="cstatus" id="cstatus" role="status"></p>
+      </form>
+    </div>
+    <div class="foot-b"><span>© <span id="yr"></span> Kayque Deleon · Artista de IA e Artista 3D</span><a href="https://www.instagram.com/kayquedeleon.ai/" target="_blank" rel="noopener">@kayquedeleon.ai</a></div>
   </div>
 </footer>
 
@@ -571,6 +621,41 @@ document.addEventListener("keydown", e => {
   if (e.key === "ArrowRight") openLB(cur+1);
   if (e.key === "ArrowLeft") openLB(cur-1);
 });
+
+/* ======== Contato ======== */
+const CONTACT_ENDPOINT = "https://formsubmit.co/ajax/kaique.leon.ai@gmail.com";
+$("#cform").addEventListener("submit", async e => {
+  e.preventDefault();
+  const f = e.target, st = $("#cstatus"), btn = f.querySelector(".send");
+  if (f._honey.value) return;
+  if (!f.nome.value.trim() || !f.email.checkValidity() || !f.email.value || !f.mensagem.value.trim()) {
+    st.className = "cstatus err"; st.textContent = "Preencha nome, um e-mail válido e a mensagem."; return;
+  }
+  btn.disabled = true; st.className = "cstatus"; st.textContent = "Enviando…";
+  try {
+    const r = await fetch(CONTACT_ENDPOINT, { method:"POST", headers:{ "Content-Type":"application/json", "Accept":"application/json" },
+      body: JSON.stringify({ nome:f.nome.value, email:f.email.value, mensagem:f.mensagem.value,
+        _subject:"Novo contato pelo portfólio: " + f.nome.value, _replyto:f.email.value, _template:"table", _captcha:"false" }) });
+    const j = await r.json().catch(()=>({}));
+    if (!r.ok || j.success === "false" || j.success === false) throw new Error(j.message || r.status);
+    f.reset(); st.className = "cstatus ok"; st.textContent = "Mensagem enviada. Obrigado! Respondo em breve.";
+  } catch (err) {
+    st.className = "cstatus err"; st.textContent = "Não foi possível enviar agora. Tente de novo ou fale pelo Instagram.";
+  } finally { btn.disabled = false; }
+});
+
+/* ======== Modo CRT (teste: ?crt) ======== */
+(function(){
+  const q = new URLSearchParams(location.search);
+  if (!q.has("crt")) return;
+  const root = document.documentElement;
+  const on = () => { root.classList.add("crt"); const p=document.createElement("div"); p.id="power"; document.body.appendChild(p); setTimeout(()=>p.remove(),1400); };
+  on();
+  const t = document.createElement("button");
+  t.className = "crt-toggle"; t.textContent = "CRT: ligado";
+  t.onclick = () => { if (root.classList.toggle("crt")) { t.textContent="CRT: ligado"; const p=document.createElement("div"); p.id="power"; document.body.appendChild(p); setTimeout(()=>p.remove(),1400);} else t.textContent="CRT: desligado"; };
+  document.body.appendChild(t);
+})();
 </script>
 </body>
 </html>
