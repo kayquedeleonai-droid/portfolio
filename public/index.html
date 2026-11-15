@@ -307,7 +307,6 @@ html.lb-open body::before,html.lb-open body::after,html.lb-open .vignette{displa
 <header class="top">
   <a href="#" class="mark">Kayque Deleon</a>
   <div class="top-r">
-    <a href="/reel/" class="pill white">Reel</a>
     <a href="#trabalhos" class="pill white">Trabalhos</a>
     <a href="#sobre" class="pill white">Sobre</a>
     <a href="#contato" class="pill white">Contato</a>
@@ -323,7 +322,7 @@ html.lb-open body::before,html.lb-open body::after,html.lb-open .vignette{displa
     <p class="role">Artista de IA · Artista 3D</p>
     <div class="kick">
       <h1>Filmes e campanhas criados com IA para grandes marcas.</h1>
-      <span class="hbtns"><a href="/reel/" class="btn ghost">▶ Assistir reel</a><a href="#trabalhos" class="btn">Ver trabalhos <span aria-hidden="true">↓</span></a></span>
+      <a href="#trabalhos" class="btn">Ver trabalhos <span aria-hidden="true">↓</span></a>
     </div>
   </div>
 </section>
@@ -647,7 +646,7 @@ $("#brands").innerHTML = BRANDS.map(b => `
 // strip + menu
 const stripItems = BRANDS.map(b => `<a href="#${b.id}">${logoHTML(b)}</a>`).join("");
 $("#strip").innerHTML = stripItems + stripItems;
-$("#menu").innerHTML = `<a class="navl" href="/reel/">▶ Reel</a><a class="navl" href="#trabalhos">Trabalhos</a><a class="navl" href="#sobre">Sobre</a><a class="navl" href="#contato">Contato</a><div class="sep navl"></div>` + BRANDS.map(b => `<a href="#${b.id}"><span class="mini">${logoHTML(b)}</span>${b.name}</a>`).join("");
+$("#menu").innerHTML = `<a class="navl" href="#trabalhos">Trabalhos</a><a class="navl" href="#sobre">Sobre</a><a class="navl" href="#contato">Contato</a><div class="sep navl"></div>` + BRANDS.map(b => `<a href="#${b.id}"><span class="mini">${logoHTML(b)}</span>${b.name}</a>`).join("");
 $("#menuBtn").onclick = e => { e.stopPropagation(); $("#menu").classList.toggle("open"); };
 document.addEventListener("click", () => $("#menu").classList.remove("open"));
 
