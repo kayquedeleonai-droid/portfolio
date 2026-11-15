@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" class="crt">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -171,7 +171,7 @@ footer h2 a,footer h2 span{color:var(--accent)}
 .foot-b{display:flex;justify-content:space-between;margin-top:90px;color:#8a8a85;font-size:14px;flex-wrap:wrap;gap:12px}
 
 /* ---------- lightbox ---------- */
-.lb{position:fixed;inset:0;background:rgba(8,8,8,.96);z-index:100;display:flex;flex-direction:column;opacity:0;pointer-events:none;transition:opacity .25s}
+.lb{position:fixed;inset:0;background:rgba(8,8,8,.98);z-index:600;display:flex;flex-direction:column;opacity:0;pointer-events:none;transition:opacity .25s}
 .lb.open{opacity:1;pointer-events:auto}
 .lb-top{display:flex;align-items:center;gap:14px;padding:16px;color:#fff}
 .lb-top .lchip{height:48px;min-width:80px;padding:8px 14px;background:#151515;border:1px solid #262626;border-radius:14px;display:grid;place-items:center;color:#fff}
@@ -238,7 +238,9 @@ footer h2 a,footer h2 span{color:var(--accent)}
 .menu .sep{height:1px;background:var(--line);margin:6px 8px}
 @media (min-width:641px){.menu .navl{display:none}}
 @media (prefers-reduced-motion:reduce){.strip-in{animation:none}}
-/* ---------- CRT (só com ?crt) ---------- */
+/* ---------- CRT ---------- */
+html.lb-open body::before,html.lb-open body::after,html.lb-open .vignette{display:none!important}
+.lb h5,.lb small{text-shadow:none!important}
 .crt-toggle{position:fixed;left:50%;transform:translateX(-50%);top:22px;z-index:300;height:44px;padding:0 18px;border-radius:999px;background:rgba(20,20,20,.75);border:1px solid rgba(255,255,255,.15);color:#fff;font-size:14px;backdrop-filter:blur(10px)}
 .crt body::before{content:"";position:fixed;inset:0;z-index:250;pointer-events:none;
   background:repeating-linear-gradient(to bottom,rgba(0,0,0,.16) 0,rgba(0,0,0,.16) 1px,transparent 1px,transparent 3px);animation:crtRoll 9s linear infinite}
@@ -656,11 +658,11 @@ function openLB(i){
   $("#lbBrand").textContent = p.b.name + (p.b.sub ? " · " + p.b.sub : "") + (p.b.partner ? " · em parceria com " + p.b.partner : "");
   vid.poster = `media/${p.f}.jpg`;
   vid.src = `media/${p.f}.mp4`;
-  lb.classList.add("open");
+  lb.classList.add("open"); document.documentElement.classList.add("lb-open");
   document.body.style.overflow = "hidden";
   vid.play().catch(()=>{});
 }
-function closeLB(){ lb.classList.remove("open"); vid.pause(); vid.removeAttribute("src"); vid.load(); document.body.style.overflow = ""; }
+function closeLB(){ lb.classList.remove("open"); document.documentElement.classList.remove("lb-open"); vid.pause(); vid.removeAttribute("src"); vid.load(); document.body.style.overflow = ""; }
 $("#lbX").onclick = closeLB;
 $("#lbPrev").onclick = () => openLB(cur-1);
 $("#lbNext").onclick = () => openLB(cur+1);
@@ -694,17 +696,10 @@ $("#cform").addEventListener("submit", async e => {
   } finally { btn.disabled = false; }
 });
 
-/* ======== Modo CRT (teste: ?crt) ======== */
+/* ======== Modo CRT ======== */
 (function(){
-  const q = new URLSearchParams(location.search);
-  if (!q.has("crt")) return;
-  const root = document.documentElement;
-  const on = () => { root.classList.add("crt"); const p=document.createElement("div"); p.id="power"; document.body.appendChild(p); setTimeout(()=>p.remove(),1400); };
-  on();
-  const t = document.createElement("button");
-  t.className = "crt-toggle"; t.textContent = "CRT: ligado";
-  t.onclick = () => { if (root.classList.toggle("crt")) { t.textContent="CRT: ligado"; const p=document.createElement("div"); p.id="power"; document.body.appendChild(p); setTimeout(()=>p.remove(),1400);} else t.textContent="CRT: desligado"; };
-  document.body.appendChild(t);
+  if (sessionStorage) { try { if (sessionStorage.getItem("crtOn")) return; sessionStorage.setItem("crtOn","1"); } catch(e){} }
+  const p=document.createElement("div"); p.id="power"; document.body.appendChild(p); setTimeout(()=>p.remove(),1400);
 })();
 </script>
 </body>
