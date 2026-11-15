@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kayque Deleon — Portfólio</title>
+<meta name="description" content="Filmes e campanhas criados com IA para Volkswagen, HBO Max, Philips Avent, Seara, Doriana, Bis e Mãe Terra.">
+<meta property="og:title" content="Kayque Deleon — Portfólio">
+<meta property="og:description" content="Filmes e campanhas criados com IA para grandes marcas.">
+<meta property="og:image" content="/media/volks-meteor.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#efefec; --ink:#111; --mute:#7a7a75; --card:#fff; --line:#dcdcd7;
+  --accent:#ff5b14; --r:22px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:"Inter Tight",system-ui,sans-serif;-webkit-font-smoothing:antialiased;letter-spacing:-.01em}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;border:0;background:none;cursor:pointer}
+
+/* ---------- top bar ---------- */
+.top{position:fixed;inset:16px 16px auto 16px;display:flex;justify-content:space-between;align-items:center;z-index:50;pointer-events:none}
+.top > *{pointer-events:auto}
+.mark{width:56px;height:56px;border-radius:50%;background:var(--ink);color:#fff;display:grid;place-items:center;font-weight:700;font-size:15px;line-height:.9;text-align:center;letter-spacing:0}
+.mark span{display:block}
+.top-r{display:flex;gap:8px}
+.pill{height:56px;padding:0 26px;border-radius:999px;display:inline-flex;align-items:center;gap:10px;font-weight:500;font-size:17px;transition:transform .2s ease,background .2s}
+.pill:hover{transform:scale(1.04)}
+.pill.accent{background:var(--accent);color:#fff}
+.pill.white{background:#fff}
+.dot3{width:56px;height:56px;border-radius:50%;background:#fff;display:grid;place-items:center}
+.dot3 i{width:4px;height:4px;border-radius:50%;background:var(--ink);box-shadow:-7px 0 0 var(--ink),7px 0 0 var(--ink)}
+
+/* ---------- menu ---------- */
+.menu{position:fixed;top:80px;right:16px;background:#fff;border-radius:var(--r);padding:10px;z-index:49;min-width:260px;box-shadow:0 20px 60px rgba(0,0,0,.12);opacity:0;transform:translateY(-8px);pointer-events:none;transition:.2s}
+.menu.open{opacity:1;transform:none;pointer-events:auto}
+.menu a{display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:14px;font-size:17px}
+.menu a:hover{background:var(--bg)}
+.menu .mini{width:44px;height:28px;display:grid;place-items:center}
+.menu .mini img{max-width:100%;max-height:100%}
+.menu .mini b{font-size:12px;font-weight:700;text-transform:uppercase}
+
+/* ---------- hero mosaic ---------- */
+.hero{position:relative;height:100vh;min-height:620px;overflow:hidden;background:#000}
+.mosaic{position:absolute;inset:-2px;display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:calc((100vh + 4px)/3);gap:0}
+.mosaic .t{position:relative;overflow:hidden;background:#222}
+.mosaic .t.w2{grid-column:span 2}
+.mosaic .t.h2{grid-row:span 2}
+.mosaic video,.mosaic img{width:100%;height:100%;object-fit:cover;display:block}
+.hero-card{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:min(520px,calc(100% - 32px));background:#fff;border-radius:6px;padding:22px 22px 18px;z-index:2}
+.hero-card h1{font-size:clamp(26px,3vw,34px);line-height:1.05;font-weight:500;letter-spacing:-.025em}
+.hero-card h1 em{font-style:normal;color:#9a9a95}
+.hero-card .btn{margin-top:44px;width:100%;height:58px;border-radius:999px;background:var(--accent);color:#fff;font-weight:600;font-size:17px;display:grid;place-items:center;transition:filter .2s}
+.hero-card .btn:hover{filter:brightness(1.08)}
+
+/* ---------- brand strip ---------- */
+.strip{background:#fff;border-bottom:1px solid var(--line);overflow:hidden;white-space:nowrap}
+.strip-in{display:inline-flex;align-items:center;gap:72px;padding:28px 36px;animation:marq 40s linear infinite}
+.strip:hover .strip-in{animation-play-state:paused}
+.strip-in a{height:44px;display:flex;align-items:center;opacity:.9;transition:opacity .2s}
+.strip-in a:hover{opacity:1}
+.strip-in img{height:100%;width:auto}
+.strip-in b{font-size:26px;font-weight:700;letter-spacing:-.03em}
+@keyframes marq{to{transform:translateX(-50%)}}
+
+/* ---------- intro ---------- */
+.intro{padding:120px 24px 60px;max-width:1440px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:end}
+.intro h2{font-size:clamp(40px,6vw,92px);line-height:.95;font-weight:600;letter-spacing:-.045em}
+.intro p{font-size:20px;line-height:1.35;color:var(--mute);max-width:440px;justify-self:end}
+.intro p b{color:var(--ink);font-weight:500}
+
+/* ---------- brand sections ---------- */
+.brands{max-width:1440px;margin:0 auto;padding:0 16px 80px}
+.brand{padding:56px 0 8px;border-top:1px solid var(--line)}
+.brand-h{display:flex;align-items:center;gap:18px;margin:0 8px 22px}
+.logo-chip{height:72px;min-width:120px;padding:12px 22px;background:#fff;border-radius:18px;display:grid;place-items:center}
+.logo-chip img{max-height:48px;max-width:160px;width:auto}
+.logo-chip b{font-size:26px;font-weight:700;letter-spacing:-.03em}
+.brand-h h3{font-size:clamp(28px,3.2vw,44px);font-weight:600;letter-spacing:-.035em;line-height:1}
+.brand-h small{display:block;color:var(--mute);font-size:15px;font-weight:400;letter-spacing:0;margin-top:6px}
+.brand-h .n{margin-left:auto;font-size:15px;color:var(--mute)}
+.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:16px}
+.piece{grid-column:span 6;cursor:pointer}
+.grid.c1 .piece{grid-column:span 12}
+.grid.c3 .piece{grid-column:span 4}
+.grid.c4 .piece{grid-column:span 6}
+.piece.vert{grid-column:span 4}
+.thumb{position:relative;aspect-ratio:16/9;border-radius:var(--r);overflow:hidden;background:#d9d9d4}
+.piece.vert .thumb{aspect-ratio:9/16;max-height:80vh}
+.thumb img,.thumb video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .6s cubic-bezier(.2,.7,.2,1),opacity .3s}
+.thumb video{opacity:0}
+.piece:hover .thumb video.ready{opacity:1}
+.piece:hover .thumb img,.piece:hover .thumb video{transform:scale(1.03)}
+.play{position:absolute;right:16px;bottom:16px;width:56px;height:56px;border-radius:50%;background:#fff;display:grid;place-items:center;transition:transform .25s,background .25s}
+.play svg{width:18px;margin-left:3px}
+.piece:hover .play{background:var(--accent);transform:scale(1.08)}
+.piece:hover .play svg path{fill:#fff}
+.dur{position:absolute;left:16px;bottom:16px;background:rgba(0,0,0,.45);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);color:#fff;font-size:13px;padding:6px 11px;border-radius:999px}
+.meta{display:flex;justify-content:space-between;align-items:baseline;padding:14px 8px 0}
+.meta h4{font-size:20px;font-weight:500;letter-spacing:-.02em}
+.meta span{font-size:14px;color:var(--mute)}
+
+/* ---------- footer ---------- */
+footer{background:var(--ink);color:#fff;padding:100px 24px 28px;border-radius:var(--r) var(--r) 0 0}
+.foot-in{max-width:1440px;margin:0 auto}
+footer h2{font-size:clamp(48px,9vw,150px);line-height:.9;font-weight:600;letter-spacing:-.05em}
+footer h2 a{color:var(--accent)}
+.foot-b{display:flex;justify-content:space-between;margin-top:90px;color:#8a8a85;font-size:14px;flex-wrap:wrap;gap:12px}
+
+/* ---------- lightbox ---------- */
+.lb{position:fixed;inset:0;background:rgba(8,8,8,.96);z-index:100;display:flex;flex-direction:column;opacity:0;pointer-events:none;transition:opacity .25s}
+.lb.open{opacity:1;pointer-events:auto}
+.lb-top{display:flex;align-items:center;gap:14px;padding:16px;color:#fff}
+.lb-top .lchip{height:48px;min-width:80px;padding:8px 14px;background:#fff;border-radius:14px;display:grid;place-items:center;color:#111}
+.lb-top .lchip img{max-height:32px;max-width:110px}
+.lb-top .lchip b{font-size:16px;font-weight:700}
+.lb-top h5{font-size:20px;font-weight:500}
+.lb-top small{display:block;color:#8a8a85;font-size:14px;font-weight:400}
+.lb-x{margin-left:auto;width:56px;height:56px;border-radius:50%;background:#fff;color:#111;display:grid;place-items:center;font-size:26px;line-height:1}
+.lb-nav{width:56px;height:56px;border-radius:50%;background:rgba(255,255,255,.12);color:#fff;display:grid;place-items:center;font-size:22px}
+.lb-nav:hover{background:rgba(255,255,255,.22)}
+.lb-stage{flex:1;display:grid;place-items:center;padding:0 16px 16px;min-height:0}
+.lb-stage video{max-width:100%;max-height:100%;border-radius:14px;background:#000;outline:none}
+
+/* ---------- responsive ---------- */
+@media (max-width:900px){
+  .mosaic{grid-template-columns:repeat(2,1fr);grid-auto-rows:calc((100vh + 4px)/4)}
+  .mosaic .t.w2{grid-column:span 2}
+  .mosaic .t.h2{grid-row:span 1}
+  .intro{grid-template-columns:1fr;padding-top:80px}
+  .intro p{justify-self:start}
+  .piece,.grid.c3 .piece,.grid.c4 .piece{grid-column:span 12}
+  .piece.vert{grid-column:span 12}
+  .piece.vert .thumb{max-height:none;max-width:420px}
+  .brand-h{flex-wrap:wrap}
+  .brand-h .n{display:none}
+  .pill.white{display:none}
+  .lb-nav{display:none}
+}
+@media (prefers-reduced-motion:reduce){.strip-in{animation:none}}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <a href="#" class="mark" aria-label="Início"><span>K<br>DL</span></a>
+  <div class="top-r">
+    <a href="#trabalhos" class="pill white">Trabalhos</a>
+    <a href="https://www.instagram.com/kayquedeleon.ai/" target="_blank" rel="noopener" class="pill accent">Instagram</a>
+    <button class="dot3" id="menuBtn" aria-label="Marcas"><i></i></button>
+  </div>
+</header>
+<nav class="menu" id="menu"></nav>
+
+<section class="hero">
+  <div class="mosaic" id="mosaic"></div>
+  <div class="hero-card">
+    <h1>Kayque Deleon<br><em>Filmes e campanhas criados com IA para grandes marcas.</em></h1>
+    <a href="#trabalhos" class="btn">Ver trabalhos</a>
+  </div>
+</section>
+
+<div class="strip"><div class="strip-in" id="strip"></div></div>
+
+<section class="intro" id="trabalhos">
+  <h2>Trabalhos<br>selecionados</h2>
+  <p><b><span id="count"></span> filmes para <span id="bcount"></span> marcas.</b> Comerciais, peças digitais e conteúdos de campanha produzidos com inteligência artificial.</p>
+</section>
+
+<main class="brands" id="brands"></main>
+
+<footer>
+  <div class="foot-in">
+    <h2>Vamos criar<br>algo <a href="https://www.instagram.com/kayquedeleon.ai/" target="_blank" rel="noopener">juntos?</a></h2>
+    <div class="foot-b"><span>© <span id="yr"></span> Kayque Deleon</span><a href="https://www.instagram.com/kayquedeleon.ai/" target="_blank" rel="noopener">@kayquedeleon.ai</a></div>
+  </div>
+</footer>
+
+<div class="lb" id="lb" role="dialog" aria-modal="true">
+  <div class="lb-top">
+    <div class="lchip" id="lbLogo"></div>
+    <div><h5 id="lbTitle"></h5><small id="lbBrand"></small></div>
+    <button class="lb-x" id="lbX" aria-label="Fechar">×</button>
+  </div>
+  <div class="lb-stage" style="display:flex;align-items:center;gap:12px">
+    <button class="lb-nav" id="lbPrev" aria-label="Anterior">←</button>
+    <div style="flex:1;height:100%;display:grid;place-items:center;min-width:0"><video id="lbVid" controls playsinline></video></div>
+    <button class="lb-nav" id="lbNext" aria-label="Próximo">→</button>
+  </div>
+</div>
+
+<script>window.__DUR={"avent-filme01":24.000000,"avent-filme02":26.389000,"avent-filme03":23.125000,"bis-biscoitos":30.143000,"doriana-coruja":30.037000,"hp-arcos":7.072000,"hp-bibi":10.041667,"hp-bike":8.064000,"hp-cristo":8.041667,"maeterra":30.093061,"seara-gourmet":30.037000,"volks-meteor":45.056000,"volks-transformacao":60.074000};</script>
+<script>
+/* ======== Conteúdo ========
+   Para trocar um logo em texto por imagem: coloque o arquivo em /logos e preencha "logo".  */
+const BRANDS = [
+  { id:"volks", name:"Volkswagen", logo:"logos/volks.svg", pieces:[
+    { t:"Meteor", f:"volks-meteor" },
+    { t:"Transformação", f:"volks-transformacao" } ]},
+  { id:"hbo", name:"HBO Max", sub:"Harry Potter", logo:"logos/hbo.svg", cols:"c4", pieces:[
+    { t:"Arcos", f:"hp-arcos" },
+    { t:"Bibi", f:"hp-bibi" },
+    { t:"Bike", f:"hp-bike" },
+    { t:"Cristo", f:"hp-cristo" } ]},
+  { id:"avent", name:"Philips Avent", logo:"logos/avent.svg", cols:"c3", pieces:[
+    { t:"Filme 01", f:"avent-filme01" },
+    { t:"Filme 02", f:"avent-filme02" },
+    { t:"Filme 03", f:"avent-filme03" } ]},
+  { id:"seara", name:"Seara", sub:"Seara Gourmet", logo:"logos/seara.svg", cols:"c1", pieces:[
+    { t:"Galeria Seara Gourmet", f:"seara-gourmet" } ]},
+  { id:"doriana", name:"Doriana", logo:"", cols:"c1", pieces:[
+    { t:"Coruja — Hero 30\"", f:"doriana-coruja" } ]},
+  { id:"maeterra", name:"Mãe Terra", logo:"", pieces:[
+    { t:"Mãe Terra", f:"maeterra" } ]},
+  { id:"bis", name:"Bis", logo:"", pieces:[
+    { t:"Biscoitos", f:"bis-biscoitos", vert:true } ]},
+];
+const DUR = window.__DUR || {};
+
+/* ======== Render ======== */
+const $ = s => document.querySelector(s);
+const logoHTML = b => b.logo ? `<img src="${b.logo}" alt="${b.name}">` : `<b>${b.name}</b>`;
+const fmt = s => { s = Math.round(s||0); return s ? `${Math.floor(s/60)}:${String(s%60).padStart(2,"0")}` : ""; };
+const playSVG = '<svg viewBox="0 0 16 18"><path d="M0 0l16 9-16 9z" fill="#111"/></svg>';
+const ALL = [];
+BRANDS.forEach(b => b.pieces.forEach(p => { p.b = b; p.i = ALL.length; ALL.push(p); }));
+
+$("#count").textContent = ALL.length;
+$("#bcount").textContent = BRANDS.length;
+$("#yr").textContent = new Date().getFullYear();
+
+// brands
+$("#brands").innerHTML = BRANDS.map(b => `
+  <section class="brand" id="${b.id}">
+    <div class="brand-h">
+      <div class="logo-chip">${logoHTML(b)}</div>
+      <h3>${b.name}${b.sub ? `<small>${b.sub}</small>` : ""}</h3>
+      <span class="n">${b.pieces.length} ${b.pieces.length>1?"peças":"peça"}</span>
+    </div>
+    <div class="grid ${b.cols||""}">
+      ${b.pieces.map(p => `
+        <article class="piece${p.vert?" vert":""}" data-i="${p.i}">
+          <div class="thumb">
+            <img src="media/${p.f}.jpg" alt="${p.t} — ${b.name}" loading="lazy">
+            <video muted loop playsinline preload="none" data-src="media/${p.f}-preview.mp4"></video>
+            ${DUR[p.f] ? `<span class="dur">${fmt(DUR[p.f])}</span>` : ""}
+            <span class="play">${playSVG}</span>
+          </div>
+          <div class="meta"><h4>${p.t}</h4><span>${b.name}</span></div>
+        </article>`).join("")}
+    </div>
+  </section>`).join("");
+
+// strip + menu
+const stripItems = BRANDS.map(b => `<a href="#${b.id}">${logoHTML(b)}</a>`).join("");
+$("#strip").innerHTML = stripItems + stripItems;
+$("#menu").innerHTML = BRANDS.map(b => `<a href="#${b.id}"><span class="mini">${logoHTML(b)}</span>${b.name}</a>`).join("");
+$("#menuBtn").onclick = e => { e.stopPropagation(); $("#menu").classList.toggle("open"); };
+document.addEventListener("click", () => $("#menu").classList.remove("open"));
+
+// hero mosaic
+const layout = [
+  ["volks-meteor","w2"],["hp-cristo",""],["avent-filme01",""],
+  ["bis-biscoitos","h2"],["seara-gourmet",""],["doriana-coruja","w2"],
+  ["hp-bike",""],["volks-transformacao",""],["maeterra",""],["hp-arcos",""],["avent-filme02",""]
+];
+$("#mosaic").innerHTML = layout.map(([f,c]) =>
+  `<div class="t ${c}"><video src="media/${f}-preview.mp4" poster="media/${f}.jpg" muted autoplay loop playsinline preload="metadata"></video></div>`).join("");
+
+// hover previews
+document.querySelectorAll(".piece").forEach(el => {
+  const v = el.querySelector("video");
+  el.addEventListener("mouseenter", () => {
+    if (!v.src) v.src = v.dataset.src;
+    v.play().then(() => v.classList.add("ready")).catch(()=>{});
+  });
+  el.addEventListener("mouseleave", () => v.pause());
+  el.addEventListener("click", () => openLB(+el.dataset.i));
+});
+
+/* ======== Lightbox ======== */
+let cur = 0;
+const lb = $("#lb"), vid = $("#lbVid");
+function openLB(i){
+  cur = (i + ALL.length) % ALL.length;
+  const p = ALL[cur];
+  $("#lbLogo").innerHTML = logoHTML(p.b);
+  $("#lbTitle").textContent = p.t;
+  $("#lbBrand").textContent = p.b.name + (p.b.sub ? " · " + p.b.sub : "");
+  vid.poster = `media/${p.f}.jpg`;
+  vid.src = `media/${p.f}.mp4`;
+  lb.classList.add("open");
+  document.body.style.overflow = "hidden";
+  vid.play().catch(()=>{});
+}
+function closeLB(){ lb.classList.remove("open"); vid.pause(); vid.removeAttribute("src"); vid.load(); document.body.style.overflow = ""; }
+$("#lbX").onclick = closeLB;
+$("#lbPrev").onclick = () => openLB(cur-1);
+$("#lbNext").onclick = () => openLB(cur+1);
+lb.addEventListener("click", e => { if (e.target === lb || e.target.classList.contains("lb-stage")) closeLB(); });
+document.addEventListener("keydown", e => {
+  if (!lb.classList.contains("open")) return;
+  if (e.key === "Escape") closeLB();
+  if (e.key === "ArrowRight") openLB(cur+1);
+  if (e.key === "ArrowLeft") openLB(cur-1);
+});
+</script>
+</body>
+</html>
