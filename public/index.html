@@ -689,9 +689,13 @@ $("#cform").addEventListener("submit", async e => {
       body: JSON.stringify({ nome:f.nome.value, email:f.email.value, mensagem:f.mensagem.value,
         _subject:"Novo contato pelo portfólio: " + f.nome.value, _replyto:f.email.value, _template:"table", _captcha:"false" }) });
     const j = await r.json().catch(()=>({}));
-    if (!r.ok || j.success === "false" || j.success === false) throw new Error(j.message || r.status);
+    if (!r.ok || j.success === "false" || j.success === false) {
+      if (/activat/i.test(j.message || "")) { st.className = "cstatus ok"; st.textContent = "Recebido! O formulário está sendo ativado. Tente enviar de novo em alguns minutos."; console.warn(j.message); return; }
+      throw new Error(j.message || r.status);
+    }
     f.reset(); st.className = "cstatus ok"; st.textContent = "Mensagem enviada. Obrigado! Respondo em breve.";
   } catch (err) {
+    console.warn("Contato:", err && err.message);
     st.className = "cstatus err"; st.textContent = "Não foi possível enviar agora. Tente de novo ou fale pelo Instagram.";
   } finally { btn.disabled = false; }
 });
